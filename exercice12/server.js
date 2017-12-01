@@ -9,10 +9,11 @@ const mongoose = require('mongoose')
 
 
 async function initializeDB() {
-    mongoose.connect('mongodb://localhost/tvdb', { useMongoClient: true });
+    mongoose.connect('mongodb://localhost/todo', { useMongoClient: true });
     mongoose.Promise = global.Promise;
     mongoose.connection.on('error', err => console.error(err.message))
 }
+
 
 
 async function initializeRoutes(server) {
@@ -31,15 +32,15 @@ async function initializeModels() {
 }
 
 async function init() {
-
-    const server = hapi.server({ port: 8000 });
-    //await initializeDb();
-    await initializeRoutes(server)
+ 
+    await initializeDB();
+    await initializeModels();
+    const server = hapi.server({ port: 7777 });
+    await initializeRoutes(server);
+    //registerPlugins(server);
     await server.start();
-    //await initializeModels()
-    console.log('Server started at: ' + server.info.uri);
-
-
+    // console.log(server.table())
+    console.log('Server has been started at: ' + server.info.uri);
 }
 
 init()
