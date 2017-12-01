@@ -6,14 +6,14 @@ const Schema = mongoose.Schema;
 
 const todoSchema = Schema({
     title: {
-        type:String,
+        type: String,
         required: "Entrez un nom"
     },
     description: {
-        type:String
+        type: String
     }
 
-    
+
 
 })
 module.exports = mongoose.model('Todo', todoSchema);

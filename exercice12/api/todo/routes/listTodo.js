@@ -2,26 +2,24 @@ const mongoose = require('mongoose');
 const boom = require('boom');
 const promisify = require('es6-promisify')
 const Todo = mongoose.model('Todo')
-const validation = require('../validationsSchema/todoValidationSchema.js');
+
 
 
 module.exports = {
     method: 'POST',
-    path: '/api/todo/post/',
+    path: '/api/todo/',
     options: {
-        validate: {
-            payload: validation,
-            failAction: (request, h, err) => err
-        }
+
     },
     handler: async (req, h) => {
-        const todo = await new Todo(req.payload);
+
+        const list = Todo.find()
         try {
-            await todo.save()
+            await list
         } catch (e) {
             console.log(e)
             return boom.badRequest(e)
         }
-        return todo;
+        return list;
     }
 }

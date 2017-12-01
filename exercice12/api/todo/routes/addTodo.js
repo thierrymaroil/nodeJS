@@ -7,7 +7,7 @@ const validation = require('../validationsSchema/todoValidationSchema.js');
 
 module.exports = {
     method: 'POST',
-    path: '/api/todo/post/',
+    path: '/api/todo/add/',
     options: {
         validate: {
             payload: validation,
