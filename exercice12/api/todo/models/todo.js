@@ -9,8 +9,8 @@ const todoSchema = Schema({
         type: String,
         required: "Entrez un nom"
     },
-    description: {
-        type: String
+    completed: {
+        type: Boolean
     }
 
 
